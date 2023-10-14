@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,8 +11,12 @@ public class PlayerMovement : MonoBehaviour
     private float xInput;
 
     [SerializeField] private Rigidbody2D rb;
+
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
+
+    [SerializeField] private Tilemap coins;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,5 +45,19 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Collectibles"))
+        {
+            Debug.Log("HIT COIN ");
+
+            Vector3Int cellPosition = coins.WorldToCell(collision.transform.position);
+
+            Debug.Log(cellPosition);
+
+            coins.SetTile(cellPosition, null);
+        }
+    }
 
 }
