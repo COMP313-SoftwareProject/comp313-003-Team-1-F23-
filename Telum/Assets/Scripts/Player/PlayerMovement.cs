@@ -17,11 +17,23 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Tilemap coins;
 
+    #region Color Vars
+    public PlayerColor currentColor;
+
+    //enum to store current color of player
+    public enum PlayerColor
+    {
+        Red,
+        Yellow,
+        Green,
+        White,
+    }
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentColor = PlayerColor.White;
     }
 
     // Update is called once per frame
@@ -29,15 +41,17 @@ public class PlayerMovement : MonoBehaviour
     {
         xInput = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
     }
 
+    #region Movement
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+        ColorSwitcher();
     }
 
     private bool IsGrounded()
@@ -45,10 +59,9 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Collectibles"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Collectibles"))
         {
             Debug.Log("HIT COIN ");
 
@@ -59,5 +72,86 @@ public class PlayerMovement : MonoBehaviour
             coins.SetTile(cellPosition, null);
         }
     }
+    #endregion
 
+    #region Color Switch
+    private void ColorSwitcher()
+    {
+
+        if (currentColor == PlayerColor.Red)
+        {
+            //change gameobject color to red
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            this.gameObject.tag = "PlayerRed";
+        }
+        if (currentColor == PlayerColor.Yellow)
+        {
+            //change color to yellow
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            this.gameObject.tag = "PlayerYellow";
+        }
+        if (currentColor == PlayerColor.Green)
+        {
+            //change color to green
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            this.gameObject.tag = "PlayerGreen";
+        }
+        if (currentColor == PlayerColor.White)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            this.gameObject.tag = "PlayerWhite";
+        }
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.gameObject.CompareTag("Red") && currentColor != PlayerColor.Red)
+            {
+                Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+            }
+            else if (collider.gameObject.CompareTag("White") && currentColor != PlayerColor.White)
+            {
+                Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+            }
+            else if (collider.gameObject.CompareTag("Green") && currentColor != PlayerColor.Green)
+            {
+                Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+            }
+            else if (collider.gameObject.CompareTag("Yellow") && currentColor != PlayerColor.Yellow)
+            {
+                Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+            }
+            else
+            {
+                Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), false);
+            }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Red") && currentColor != PlayerColor.Red)
+        {
+            Debug.Log("hit red");
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>(), true);
+        }
+        else if (collision.gameObject.CompareTag("White") && currentColor != PlayerColor.White)
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>(), true);
+        }
+        else if (collision.gameObject.CompareTag("Green") && currentColor != PlayerColor.Green)
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>(), true);
+        }
+        else if (collision.gameObject.CompareTag("Yellow") && currentColor != PlayerColor.Yellow)
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>(), true);
+        }
+        else
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>(), false);
+        }
+    }
+
+    #endregion
 }
