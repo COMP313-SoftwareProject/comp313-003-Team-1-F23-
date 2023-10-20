@@ -5,28 +5,23 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speedInMPerSec = 2f; // m/frame = m/s * Time.deltaTime
-    public float leftAndRightEdge = 25f;
+    public float leftAndRightEdge = 5f;
     public float chanceOfDirectionChange = 0.1f; //10% chance to change direction
     public float directionChangeDelay = 1f; //1 second delay between direction changes
-
-    public int health = 5;
+    public GameObject enemyBulletPrefab;
+    public float bulletSpeed = 10f;
+    public Transform firePoint;
 
     private bool canChangeDirection = true;
 
     void Start()
     {
-
     }
 
     void Update()
     {
         Move();
         ChangeDirectionRandomly();
-        if (health <= 0)
-        {
-            // Destroy the enemy when its health reaches zero or below.
-            Destroy(this.gameObject);
-        }
     }
 
     private void CheckForDirChangeAndChangeIfNecessary()
@@ -65,6 +60,7 @@ public class Enemy : MonoBehaviour
             }
             canChangeDirection = false;
             StartCoroutine(ResetDirectionChangeDelay());
+            Shoot();
         }
     }
 
@@ -74,21 +70,17 @@ public class Enemy : MonoBehaviour
         canChangeDirection = true;
     }
 
-    void FixedUpdate()
-    {
 
+    private void Shoot()
+    {
+        GameObject bullet = Instantiate(enemyBulletPrefab, firePoint.position, Quaternion.identity);
+        bullet.layer = LayerMask.NameToLayer("EnemyBullet");
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+        bulletRb.velocity = Vector2.down * bulletSpeed;
+        Destroy(bullet, 2f);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("PlayerBullet"))
-        {
-            // Decrease enemy's health when hit by a player's bullet.
-            health -= 1;
-            Debug.Log(health);
-        }
-    }
-
+    // Draw a yellow wire cube in the editor to show the left and right edge of the screen
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

@@ -12,6 +12,9 @@ TagManager:
   - White
   - Yellow
   - Green
+  - PlayerBullet
+  - Enemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -21,9 +24,9 @@ TagManager:
   - UI
   - Collectibles
   - 
-  - 
-  - 
-  - 
+  - EnemyBullet
+  - PlayerBullet
+  - Enemy
   - 
   - 
   - 
