@@ -16,6 +16,7 @@ TagManager:
   - Enemy
   - EnemyBullet
   - Boss
+  - Exit
   layers:
   - Default
   - TransparentFX
