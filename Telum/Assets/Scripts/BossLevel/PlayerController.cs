@@ -12,6 +12,69 @@ public class PlayerController : MonoBehaviour
     public AudioClip PlayerShootSound;
 
 
+    public enum PlayerColor
+    {
+        Red,
+        Yellow,
+        Green,
+        White,
+    }
+
+    public PlayerColor currentColor;
+
+    private void ColorSwitcher()
+    {
+
+        if (currentColor == PlayerColor.Red)
+        {
+            //change gameobject color to red
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            this.gameObject.tag = "PlayerRed";
+        }
+        if (currentColor == PlayerColor.Yellow)
+        {
+            //change color to yellow
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+            this.gameObject.tag = "PlayerYellow";
+        }
+        if (currentColor == PlayerColor.Green)
+        {
+            //change color to green
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            this.gameObject.tag = "PlayerGreen";
+        }
+        if (currentColor == PlayerColor.White)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            this.gameObject.tag = "PlayerWhite";
+        }
+
+        // Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        // foreach (Collider2D collider in colliders)
+        // {
+        //     if (collider.gameObject.CompareTag("Red") && currentColor != PlayerColor.Red)
+        //     {
+        //         Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+        //     }
+        //     else if (collider.gameObject.CompareTag("White") && currentColor != PlayerColor.White)
+        //     {
+        //         Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+        //     }
+        //     else if (collider.gameObject.CompareTag("Green") && currentColor != PlayerColor.Green)
+        //     {
+        //         Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+        //     }
+        //     else if (collider.gameObject.CompareTag("Yellow") && currentColor != PlayerColor.Yellow)
+        //     {
+        //         Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), true);
+        //     }
+        //     else
+        //     {
+        //         Physics2D.IgnoreCollision(collider, GetComponent<Collider2D>(), false);
+        //     }
+        // }
+    }
+
     void Update()
     {
         // Player movement
@@ -40,15 +103,17 @@ public class PlayerController : MonoBehaviour
             nextFire = Time.time + fireRate;
             Shoot();
         }
+
+        ColorSwitcher();
     }
-
-
 
     void Shoot()
     {
         // Create the bullet object
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         AudioSource.PlayClipAtPoint(PlayerShootSound, transform.position);
+
+        bullet.GetComponent<Bullet>().playerController = this;
 
         // Set the bullet's velocity to move upward
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
