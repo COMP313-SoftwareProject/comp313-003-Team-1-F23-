@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
@@ -19,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     #region Color Vars
     public PlayerColor currentColor;
-
     //enum to store current color of player
     public enum PlayerColor
     {
@@ -57,20 +57,6 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Collectibles"))
-        {
-            Debug.Log("HIT COIN ");
-
-            Vector3Int cellPosition = coins.WorldToCell(collision.transform.position);
-
-            Debug.Log(cellPosition);
-
-            coins.SetTile(cellPosition, null);
-        }
     }
     #endregion
 
@@ -150,6 +136,20 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>(), false);
+        }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        // exit check if player is in trigger and pressing up
+
+        if (other.gameObject.CompareTag("Exit"))
+        {
+            Debug.Log("Exit");
+            // load next scene in build index
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
