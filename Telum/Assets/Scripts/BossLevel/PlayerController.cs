@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public Transform firePoint;
     public float fireRate = 0.5f;
     private float nextFire = 0f;
+    public AudioClip PlayerShootSound;
+
 
     void Update()
     {
@@ -40,10 +42,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+
     void Shoot()
     {
         // Create the bullet object
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        AudioSource.PlayClipAtPoint(PlayerShootSound, transform.position);
 
         // Set the bullet's velocity to move upward
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
