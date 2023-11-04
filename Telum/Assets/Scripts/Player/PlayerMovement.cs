@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
+
+        ColorSwitcher();
     }
 
     #region Movement

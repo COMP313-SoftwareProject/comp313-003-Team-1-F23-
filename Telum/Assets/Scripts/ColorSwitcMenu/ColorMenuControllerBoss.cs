@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorMenuController : MonoBehaviour
+public class ColorMenuControllerBoss : MonoBehaviour
 {
     public GameObject panel;
     public GameObject player;
 
-    public PlayerMovement playerController;
+    private PlayerController playerController;
 
     //list of buttons
     public List<Button> buttons;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerController = player.GetComponent<PlayerController>();
+    }
 
     //coroutine for slowing down time
     IEnumerator SlowDownTime(float target, float duration)
@@ -49,19 +55,19 @@ public class ColorMenuController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 // Select the first button
-                playerController.currentColor = PlayerMovement.PlayerColor.Green;
+                playerController.currentColor = PlayerController.PlayerColor.Green;
                 Debug.Log("first color");
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 // Select the second button
-                playerController.currentColor = PlayerMovement.PlayerColor.Yellow;
+                playerController.currentColor = PlayerController.PlayerColor.Yellow;
                 Debug.Log("second color");
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 // Select the third button
-                playerController.currentColor = PlayerMovement.PlayerColor.Red;
+                playerController.currentColor = PlayerController.PlayerColor.Red;
                 Debug.Log("third color");
             }
         }
