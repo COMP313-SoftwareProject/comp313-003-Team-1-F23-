@@ -6,7 +6,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public AudioClip EnemyDamage;
-    private int health = 10;
+    public int health = 10;
     private SpriteRenderer spriteRenderer;
     public GameObject player;
 
@@ -27,7 +27,7 @@ public class Boss : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         switch (health)
         {

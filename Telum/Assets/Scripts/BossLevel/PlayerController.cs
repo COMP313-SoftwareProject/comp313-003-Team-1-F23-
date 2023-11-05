@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     private float nextFire = 0f;
     public AudioClip PlayerShootSound;
 
-
+    public float horizontalInput;
+    public float verticalInput;
     public enum PlayerColor
     {
         Red,
@@ -19,7 +20,6 @@ public class PlayerController : MonoBehaviour
         Green,
         White,
     }
-
     public PlayerColor currentColor;
 
     private void ColorSwitcher()
@@ -77,25 +77,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Player movement
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0);
-        transform.Translate(movement * moveSpeed * Time.deltaTime);
 
-        // Customize controls
-        float moveInput = 0;
-        if (Input.GetKey("a"))
-        {
-            moveInput = -1f;
-        }
-        else if (Input.GetKey("d"))
-        {
-            moveInput = 1f;
-        }
-
-        Vector3 customMovement = new Vector3(moveInput, verticalInput, 0);
-        transform.Translate(customMovement * moveSpeed * Time.deltaTime);
 
         // Shooting with the space bar
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire)
@@ -105,6 +87,20 @@ public class PlayerController : MonoBehaviour
         }
 
         ColorSwitcher();
+    }
+
+    void FixedUpdate()
+    {
+        // Player movement
+        float horInput = Input.GetAxis("Horizontal");
+        if(horizontalInput != 0){
+            transform.Translate(horizontalInput * moveSpeed, 0, Time.deltaTime);
+        }
+        else{
+            Vector2 movement = new Vector2(horInput, GetComponent<Rigidbody2D>().velocity.y);
+            transform.Translate(movement * moveSpeed * Time.deltaTime);
+        }
+
     }
 
     void Shoot()
