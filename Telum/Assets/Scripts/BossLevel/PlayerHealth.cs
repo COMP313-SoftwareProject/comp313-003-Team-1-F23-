@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 5;
     public int currentHealth;
 
+    public AudioClip playerDamage;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -16,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
+            AudioSource.PlayClipAtPoint(playerDamage, transform.position);
             currentHealth--;
             Debug.Log(currentHealth);
             if (currentHealth <= 0)

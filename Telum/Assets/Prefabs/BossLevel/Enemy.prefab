@@ -204,12 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbb9f0196aca22459f9675e57df8fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedInMPerSec: 2
+  speedInMPerSec: 3
   leftAndRightEdge: 5
   chanceOfDirectionChange: 0.1
   directionChangeDelay: 1
   enemyBulletPrefab: {fileID: 7933538408837226494, guid: 67a5f84143befcd4c9e4ff3899a94c3d, type: 3}
-  bulletSpeed: 10
+  bulletSpeed: 5
   firePoint: {fileID: 9215175551377036292}
 --- !u!114 &5942627340128028014
 MonoBehaviour:
@@ -223,5 +223,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f676e020407693e419cd60e904ad338b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 2
   currentHealth: 0

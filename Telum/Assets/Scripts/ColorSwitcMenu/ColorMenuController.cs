@@ -7,6 +7,7 @@ public class ColorMenuController : MonoBehaviour
 {
     public GameObject panel;
     public GameObject player;
+
     public PlayerMovement playerController;
 
     //list of buttons

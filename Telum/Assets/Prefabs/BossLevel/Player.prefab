@@ -134,6 +134,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6518421566823957930, guid: 9fa8433e6a840cd428d101aadaf05526, type: 3}
   firePoint: {fileID: 2415572560485606999}
   fireRate: 0.5
+  PlayerShootSound: {fileID: 0}
+  currentColor: 3
 --- !u!114 &-1205208007458083263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +150,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
+  playerDamage: {fileID: 0}

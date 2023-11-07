@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float speedInMPerSec = 2f; // m/frame = m/s * Time.deltaTime
-    public float leftAndRightEdge = 5f;
+    public float speedInMPerSec = 3f; // m/frame = m/s * Time.deltaTime
+    public float leftAndRightEdge = 9f;
     public float chanceOfDirectionChange = 0.1f; //10% chance to change direction
     public float directionChangeDelay = 1f; //1 second delay between direction changes
     public GameObject enemyBulletPrefab;
-    public float bulletSpeed = 10f;
+    public float bulletSpeed = 5f;
     public Transform firePoint;
 
     private bool canChangeDirection = true;

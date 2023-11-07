@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float spawnInterval = 2f;
-    public float spawnRadius = 3f;
+    public float spawnInterval = 3f;
+    public float spawnRadius = 5f;
 
     private float lastSpawnTime;
 

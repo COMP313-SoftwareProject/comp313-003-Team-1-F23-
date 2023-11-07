@@ -171,3 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5c403d98572464a8d21efbbd3e1452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyDamage: {fileID: 8300000, guid: a6c49cfb84655e640ae5b62eda8d3023, type: 3}
+  playerController: {fileID: 6859028148764494069, guid: f31f19af583dd074d937bf8022c82d39, type: 3}
