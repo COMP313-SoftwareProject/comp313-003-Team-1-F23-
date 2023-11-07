@@ -19,7 +19,6 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         InputManagement();
-        Move();
     }
 
     void InputManagement()
@@ -30,13 +29,17 @@ public class PlayerMove : MonoBehaviour
         moveDir = new Vector2(moveX, moveY).normalized;
     }
 
-    void Move()
+    void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
+        Move();
     }
 
+    void Move()
+    {
+        // Calculate the player's new position based on input and speed
+        Vector2 newPosition = rb.position + moveDir * moveSpeed * Time.fixedDeltaTime;
+
+        // Perform a Rigidbody2D move position, which includes collision detection
+        rb.MovePosition(newPosition);
+    }
 }
-
-
-
-
