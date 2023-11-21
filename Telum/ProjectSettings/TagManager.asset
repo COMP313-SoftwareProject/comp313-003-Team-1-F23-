@@ -17,6 +17,10 @@ TagManager:
   - EnemyBullet
   - Boss
   - Exit
+  - Spike
+  - Box
+  - Ground
+  - Climbable
   layers:
   - Default
   - TransparentFX
