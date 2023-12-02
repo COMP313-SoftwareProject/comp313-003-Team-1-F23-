@@ -12,6 +12,7 @@ public class ColorMenuController : MonoBehaviour
 
     //list of buttons
     public List<Button> buttons;
+
     //coroutine for slowing down time
     IEnumerator SlowDownTime(float target, float duration)
     {
@@ -25,7 +26,6 @@ public class ColorMenuController : MonoBehaviour
             yield return null;
         }
     }
-
 
     // Update is called once per frame
     void Update()
