@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class ColorMenuControllerMaze : MonoBehaviour
 {
     public GameObject panel;
-    public GameObject player;
+    private GameObject player;
 
-    public PlayerMover playerController;
+    private PlayerMover playerController;
 
     //list of buttons
     public List<Button> buttons;
@@ -24,6 +24,11 @@ public class ColorMenuControllerMaze : MonoBehaviour
             Time.timeScale = Mathf.Lerp(start, target, elapsed / duration);
             yield return null;
         }
+    }
+
+    void Start(){
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerMover>();
     }
 
 
