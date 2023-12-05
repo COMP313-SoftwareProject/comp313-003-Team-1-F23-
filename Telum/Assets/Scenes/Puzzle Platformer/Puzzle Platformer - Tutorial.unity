@@ -1181,7 +1181,7 @@ MonoBehaviour:
   groundCheckPos: {fileID: 1222282654}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   isDoubleJumpingEnabled: 0
 --- !u!114 &671444263
 MonoBehaviour:

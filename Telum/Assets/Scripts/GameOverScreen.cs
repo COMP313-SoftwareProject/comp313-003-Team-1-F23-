@@ -18,12 +18,7 @@ public class GameOverScreen : MonoBehaviour
         }
 
     }
-    public void LoadMenu()
-    {
-        
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1f;
-    }
+    
     public void Restart()
     {
         Application.LoadLevel(SceneManager.GetActiveScene().name);
