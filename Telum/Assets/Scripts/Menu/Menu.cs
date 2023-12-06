@@ -23,4 +23,9 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Bonus()
+    {
+        SceneManager.LoadScene("platformer_level2");
+    }
 }

@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Settings.unity
     guid: 85d1f5f3ddf49d84292e15112a056afc
+  - enabled: 1
+    path: Assets/Scenes/platformer_level2.unity
+    guid: ab63a59d1882b414abea4b96171af297
   m_configObjects: {}
