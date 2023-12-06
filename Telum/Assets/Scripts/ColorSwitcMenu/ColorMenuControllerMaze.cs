@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorMenuController : MonoBehaviour
+public class ColorMenuControllerMaze : MonoBehaviour
 {
     public GameObject panel;
-    public GameObject player;
+    private GameObject player;
 
-    public PlayerMovement playerController;
+    private PlayerMover playerController;
 
     //list of buttons
     public List<Button> buttons;
@@ -24,6 +24,11 @@ public class ColorMenuController : MonoBehaviour
             Time.timeScale = Mathf.Lerp(start, target, elapsed / duration);
             yield return null;
         }
+    }
+
+    void Start(){
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerMover>();
     }
 
 
@@ -49,19 +54,19 @@ public class ColorMenuController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 // Select the first button
-                playerController.currentColor = PlayerMovement.PlayerColor.Green;
+                playerController.currentColor = PlayerMover.PlayerColor.Green;
                 Debug.Log("first color");
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 // Select the second button
-                playerController.currentColor = PlayerMovement.PlayerColor.Yellow;
+                playerController.currentColor = PlayerMover.PlayerColor.Yellow;
                 Debug.Log("second color");
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 // Select the third button
-                playerController.currentColor = PlayerMovement.PlayerColor.Red;
+                playerController.currentColor = PlayerMover.PlayerColor.Red;
                 Debug.Log("third color");
             }
         }

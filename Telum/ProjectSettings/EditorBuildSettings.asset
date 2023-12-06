@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: fb79e1638e308cb4e86fed0ec6e2ca90
+  - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 2ebe7b2258ff098408d745803c1d26e5
   - enabled: 1
+    path: Assets/Scenes/Survivors.unity
+    guid: 15c77b2959ce45f41a01de183a8f5fd8
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/FinishMenu.unity
+    guid: b1fbf33b106b670488c72127f02cb6a9
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 85d1f5f3ddf49d84292e15112a056afc
   m_configObjects: {}
