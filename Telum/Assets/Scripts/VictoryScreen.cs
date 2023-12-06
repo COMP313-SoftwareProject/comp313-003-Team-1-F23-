@@ -12,25 +12,14 @@ public class VictoryScreen : MonoBehaviour
         victoryScreenUI.SetActive(true);
     }
 
-    public void LoadMenu()
-    {
-
-        SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1f;
-
-    }
+    
     public void Restart()
     {
         Application.LoadLevel(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
 
-    public void NextLevel()
-    {
-        //transition.SetTrigger("Start");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Time.timeScale = 1f;
-    }
+    
 
     public void RestartGame()
     {

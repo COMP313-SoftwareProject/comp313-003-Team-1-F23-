@@ -56,7 +56,7 @@ public class PlayerControl : MonoBehaviour
         horizontalMov = Input.GetAxisRaw("Horizontal") * speed;
         verticalMov = Input.GetAxisRaw("Vertical") * speed;
 
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMov));
+        //animator.SetFloat("Speed", Mathf.Abs(horizontalMov));
 
 
         if (horizontalMov != 0)
@@ -103,12 +103,12 @@ public class PlayerControl : MonoBehaviour
         if(isTouchingFront == true && isGrounded == false && horizontalMov != 0)
         {
             wallSliding = true;
-            animator.SetBool("Jump", false);
-            animator.SetBool("Grab", true);
+            //animator.SetBool("Jump", false);
+            //animator.SetBool("Grab", true);
         }
         else
         {
-            animator.SetBool("Grab", false);
+            //animator.SetBool("Grab", false);
             wallSliding = false;
         }
 
@@ -152,7 +152,7 @@ public class PlayerControl : MonoBehaviour
     void setWallJumpToFalse()
     {
         wallJump = false;
-        animator.SetBool("Grab", false);
+       // animator.SetBool("Grab", false);
     }
 
     private bool GroundCheck()
@@ -174,12 +174,12 @@ public class PlayerControl : MonoBehaviour
         if(collision.gameObject.tag == "Ground" || collision.gameObject.tag == "ClimbableWalls")
         {
             isJumping = false;
-            animator.SetBool("Jump", false);
+            //animator.SetBool("Jump", false);
         }
 
         
 
-        else if(collision.gameObject.tag == "Spike")
+        else if(collision.gameObject.tag == "Spike" || collision.gameObject.tag == "Bullet")
         {
             FindObjectOfType<GameOverScreen>().GameOver();
 
@@ -192,7 +192,7 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "ClimbableWalls")
         {
             isJumping = true;
-            animator.SetBool("Jump", true);
+            //animator.SetBool("Jump", true);
             
 
         }
